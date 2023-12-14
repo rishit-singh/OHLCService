@@ -6,11 +6,15 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE --std=c++20")
 
 file(GLOB OHLCService_SOURCES src/*.cpp)
+file(GLOB protobufs_SOURCES protobufs/*.cc)
 
-add_library(libOHLCService ${OHLCService_SOURCES})
+add_library(libOHLCService ${OHLCService_SOURCES} ${protobufs_SOURCES})
 target_include_directories(libOHLCService PUBLIC include/)
+
+add_library(protobufs ${protobufs_SOURCES})
+target_include_directories(protobufs PUBLIC protobufs/)
 
 add_executable(OHLCService src/main.cpp)
 target_include_directories(OHLCService PRIVATE include/)
-target_link_libraries(OHLCService libOHLCService) 
+target_link_libraries(OHLCService libOHLCService protobufs) 
  

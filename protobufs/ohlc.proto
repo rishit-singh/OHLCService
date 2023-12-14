@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package OHLCService;
+
+message OHLC
+{
+    optional string Period = 1;
+    
+    optional int32 Volume = 2;
+
+    optional int32 Value = 3;
+    
+    optional int32 AveragePrice = 4;
+}
+
+message OHLCContainer
+{
+    repeated OHLC OHLCs = 1;
+}
+
+
