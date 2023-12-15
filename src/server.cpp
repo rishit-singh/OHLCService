@@ -4,13 +4,32 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server.h> // Add this line
 #include <grpcpp/server_builder.h> // Add this line
+#include <sw/redis++/redis++.h>
 
 using namespace OHLCService;
 using namespace OHLCService::gRPC;
 
+using namespace sw::redis;
+
+void InitRedis(std::string address)
+{
+    auto redis = Redis(address);
+
+    OHLC ohlc; 
+
+    ohlc.set_stock("TSLA");
+    ohlc.set_period("2023....");
+    ohlc.set_value(1000);
+    ohlc.set_volume(100);
+    ohlc.set_averageprice(10);
+
+    redis.hset("hash", std::make_pair(ohlc.stock(), ohlc.SerializeAsString()));
+}
+
 int main(int argc, char** argv)
 {
-    OHLCServerImpl service;
+    InitRedis(argv[2]);
+    OHLCServerImpl service = OHLCServerImpl(argv[2]);
 
     grpc::ServerBuilder builder;
 

@@ -77,14 +77,12 @@ int main(int argc, char** argv)
 
     OHLC response = client.GetOHLCsByStock(argv[2])[0];
 
-    std::cout
-        << "Payload: OHLC(Stock=" << response.stock()
+    std::cout << "Payload: OHLC(Stock=" << response.stock()
         << ", Period=" << response.period()
         << ", Value=" << response.value()
         << ", Volume=" << response.volume()
         << ", AvgPrice=" << response.averageprice()
-        << ");" 
-        << '\n'; 
+        << ");\n"; 
 
     return 0;    
 }
