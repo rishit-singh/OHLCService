@@ -28,6 +28,9 @@ inline constexpr OHLC::Impl_::Impl_(
         period_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        stock_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         volume_{0},
         value_{0},
         averageprice_{0} {}
@@ -81,6 +84,7 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLC, _impl_.period_),
+    PROTOBUF_FIELD_OFFSET(::OHLCService::OHLC, _impl_.stock_),
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLC, _impl_.volume_),
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLC, _impl_.value_),
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLC, _impl_.averageprice_),
@@ -88,6 +92,7 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     1,
     2,
     3,
+    4,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLCContainer, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -101,8 +106,8 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 12, -1, sizeof(::OHLCService::OHLC)},
-        {16, -1, -1, sizeof(::OHLCService::OHLCContainer)},
+        {0, 13, -1, sizeof(::OHLCService::OHLC)},
+        {18, -1, -1, sizeof(::OHLCService::OHLCContainer)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -110,18 +115,19 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::OHLCService::_OHLCContainer_default_instance_._instance,
 };
 const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\nohlc.proto\022\013OHLCService\"\220\001\n\004OHLC\022\023\n\006Pe"
-    "riod\030\001 \001(\tH\000\210\001\001\022\023\n\006Volume\030\002 \001(\005H\001\210\001\001\022\022\n\005"
-    "Value\030\003 \001(\005H\002\210\001\001\022\031\n\014AveragePrice\030\004 \001(\001H\003"
-    "\210\001\001B\t\n\007_PeriodB\t\n\007_VolumeB\010\n\006_ValueB\017\n\r_"
-    "AveragePrice\"1\n\rOHLCContainer\022 \n\005OHLCs\030\001"
-    " \003(\0132\021.OHLCService.OHLCb\006proto3"
+    "\n\nohlc.proto\022\013OHLCService\"\256\001\n\004OHLC\022\023\n\006Pe"
+    "riod\030\001 \001(\tH\000\210\001\001\022\022\n\005Stock\030\002 \001(\tH\001\210\001\001\022\023\n\006V"
+    "olume\030\003 \001(\005H\002\210\001\001\022\022\n\005Value\030\004 \001(\005H\003\210\001\001\022\031\n\014"
+    "AveragePrice\030\005 \001(\001H\004\210\001\001B\t\n\007_PeriodB\010\n\006_S"
+    "tockB\t\n\007_VolumeB\010\n\006_ValueB\017\n\r_AveragePri"
+    "ce\"1\n\rOHLCContainer\022 \n\005OHLCs\030\001 \003(\0132\021.OHL"
+    "CService.OHLCb\006proto3"
 };
 static ::absl::once_flag descriptor_table_ohlc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ohlc_2eproto = {
     false,
     false,
-    231,
+    261,
     descriptor_table_protodef_ohlc_2eproto,
     "ohlc.proto",
     &descriptor_table_ohlc_2eproto_once,
@@ -164,14 +170,17 @@ class OHLC::_Internal {
   static void set_has_period(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
-  static void set_has_volume(HasBits* has_bits) {
+  static void set_has_stock(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
-  static void set_has_value(HasBits* has_bits) {
+  static void set_has_volume(HasBits* has_bits) {
     (*has_bits)[0] |= 4u;
   }
-  static void set_has_averageprice(HasBits* has_bits) {
+  static void set_has_value(HasBits* has_bits) {
     (*has_bits)[0] |= 8u;
+  }
+  static void set_has_averageprice(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
   }
 };
 
@@ -185,7 +194,8 @@ inline PROTOBUF_NDEBUG_INLINE OHLC::Impl_::Impl_(
     const Impl_& from)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        period_(arena, from.period_) {}
+        period_(arena, from.period_),
+        stock_(arena, from.stock_) {}
 
 OHLC::OHLC(
     ::google::protobuf::Arena* arena,
@@ -210,7 +220,8 @@ inline PROTOBUF_NDEBUG_INLINE OHLC::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        period_(arena) {}
+        period_(arena),
+        stock_(arena) {}
 
 inline void OHLC::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -229,6 +240,7 @@ OHLC::~OHLC() {
 inline void OHLC::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.period_.Destroy();
+  _impl_.stock_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -240,10 +252,15 @@ PROTOBUF_NOINLINE void OHLC::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _impl_.period_.ClearNonDefaultToEmpty();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.period_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.stock_.ClearNonDefaultToEmpty();
+    }
   }
-  if (cached_has_bits & 0x0000000eu) {
+  if (cached_has_bits & 0x0000001cu) {
     ::memset(&_impl_.volume_, 0, static_cast<::size_t>(
         reinterpret_cast<char*>(&_impl_.averageprice_) -
         reinterpret_cast<char*>(&_impl_.volume_)) + sizeof(_impl_.averageprice_));
@@ -260,53 +277,63 @@ const char* OHLC::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 36, 2> OHLC::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(OHLC, _impl_._has_bits_),
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_OHLC_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // optional double AveragePrice = 4;
-    {::_pbi::TcParser::FastF64S1,
-     {33, 3, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // optional string Period = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.period_)}},
-    // optional int32 Volume = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OHLC, _impl_.volume_), 1>(),
-     {16, 1, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.volume_)}},
-    // optional int32 Value = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OHLC, _impl_.value_), 2>(),
-     {24, 2, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.value_)}},
+    // optional string Stock = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.stock_)}},
+    // optional int32 Volume = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OHLC, _impl_.volume_), 2>(),
+     {24, 2, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.volume_)}},
+    // optional int32 Value = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OHLC, _impl_.value_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.value_)}},
+    // optional double AveragePrice = 5;
+    {::_pbi::TcParser::FastF64S1,
+     {41, 4, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // optional string Period = 1;
     {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.period_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // optional int32 Volume = 2;
-    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.volume_), _Internal::kHasBitsOffset + 1, 0,
+    // optional string Stock = 2;
+    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.stock_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional int32 Volume = 3;
+    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.volume_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // optional int32 Value = 3;
-    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.value_), _Internal::kHasBitsOffset + 2, 0,
+    // optional int32 Value = 4;
+    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.value_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // optional double AveragePrice = 4;
-    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_), _Internal::kHasBitsOffset + 3, 0,
+    // optional double AveragePrice = 5;
+    {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_), _Internal::kHasBitsOffset + 4, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kDouble)},
   }},
   // no aux_entries
   {{
-    "\20\6\0\0\0\0\0\0"
+    "\20\6\5\0\0\0\0\0"
     "OHLCService.OHLC"
     "Period"
+    "Stock"
   }},
 };
 
@@ -326,25 +353,33 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
-  // optional int32 Volume = 2;
+  // optional string Stock = 2;
   if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_volume(), target);
+    const std::string& _s = this->_internal_stock();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "OHLCService.OHLC.Stock");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // optional int32 Value = 3;
+  // optional int32 Volume = 3;
   if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::
         WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_volume(), target);
+  }
+
+  // optional int32 Value = 4;
+  if (cached_has_bits & 0x00000008u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
             stream, this->_internal_value(), target);
   }
 
-  // optional double AveragePrice = 4;
-  if (cached_has_bits & 0x00000008u) {
+  // optional double AveragePrice = 5;
+  if (cached_has_bits & 0x00000010u) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-        4, this->_internal_averageprice(), target);
+        5, this->_internal_averageprice(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -365,27 +400,33 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000000fu) {
+  if (cached_has_bits & 0x0000001fu) {
     // optional string Period = 1;
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this->_internal_period());
     }
 
-    // optional int32 Volume = 2;
+    // optional string Stock = 2;
     if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_stock());
+    }
+
+    // optional int32 Volume = 3;
+    if (cached_has_bits & 0x00000004u) {
       total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
           this->_internal_volume());
     }
 
-    // optional int32 Value = 3;
-    if (cached_has_bits & 0x00000004u) {
+    // optional int32 Value = 4;
+    if (cached_has_bits & 0x00000008u) {
       total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
           this->_internal_value());
     }
 
-    // optional double AveragePrice = 4;
-    if (cached_has_bits & 0x00000008u) {
+    // optional double AveragePrice = 5;
+    if (cached_has_bits & 0x00000010u) {
       total_size += 9;
     }
 
@@ -410,17 +451,20 @@ void OHLC::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protob
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000000fu) {
+  if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
       _this->_internal_set_period(from._internal_period());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.volume_ = from._impl_.volume_;
+      _this->_internal_set_stock(from._internal_stock());
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.value_ = from._impl_.value_;
+      _this->_impl_.volume_ = from._impl_.volume_;
     }
     if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.value_ = from._impl_.value_;
+    }
+    if (cached_has_bits & 0x00000010u) {
       _this->_impl_.averageprice_ = from._impl_.averageprice_;
     }
     _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -449,6 +493,7 @@ void OHLC::InternalSwap(OHLC* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.period_, &other->_impl_.period_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.stock_, &other->_impl_.stock_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_)
       + sizeof(OHLC::_impl_.averageprice_)

@@ -9,7 +9,7 @@ int main(int argc, char** argv)
     generator.GenerateOHLCs();
 
     for (auto ohlc : generator.GetOHLCs())
-        std::cout << "OHLC(" << "Period=" << ohlc.period() << ", Value=" << ohlc.value() << ", Volume=" << ohlc.volume() << ", AvgPrice=" << ohlc.averageprice() << ");\n";
+        std::cout << "OHLC(" << "Period=" << ohlc.period() << "Stock=" << ohlc.stock() << ", Value=" << ohlc.value() << ", Volume=" << ohlc.volume() << ", AvgPrice=" << ohlc.averageprice() << ");\n";
 
     return 0;
 }

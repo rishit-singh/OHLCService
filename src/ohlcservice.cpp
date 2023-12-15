@@ -1,8 +1,8 @@
 #include <ohlcservice.hpp>
 
 
-OHLCService::Transaction::Transaction(size_t quantity, size_t price)
-    : Quantity(quantity), Price(price)
+OHLCService::Transaction::Transaction(std::string stock, size_t quantity, size_t price)
+    : Stock(stock), Quantity(quantity), Price(price)
 {
 }
 
@@ -30,20 +30,39 @@ std::vector<OHLCService::OHLC> OHLCService::OHLCGenerator::GenerateOHLCs()
 {
     OHLCService::OHLC ohlc;
 
-    for (auto const& [key, val] : this->Transactions)
+    std::unordered_map<std::string, std::vector<Transaction>> transactionMap;
+
+    for (auto const& [key, val] : this->Transactions) // for each period
     { 
-        ohlc.set_period(key);
-        ohlc.set_value(this->GetValue(val));
-        ohlc.set_volume(this->GetVolume(val));
-        
-        if (!ohlc.value() && !ohlc.volume())
-            continue;
+        for (auto t : val) // for each transaction in the period
+        {
+            if (!transactionMap.contains(t.Stock))
+                transactionMap[t.Stock] = {};
+            
+            transactionMap[t.Stock].push_back(t); // segregate transactions by stock
+        }
 
-        ohlc.set_averageprice(ohlc.value() / ohlc.volume());
+        for (auto const& [stockKey, transactions] : transactionMap) // for each stock in the period
+        {
+            for (auto t : transactions) // for each transaction in stock
+            {
+                ohlc.set_period(key);
+                ohlc.set_stock(stockKey);
+                ohlc.set_value(this->GetValue(transactions));
+                ohlc.set_volume(this->GetVolume(transactions));
+                
+                if (!ohlc.value() && !ohlc.volume())
+                    continue;
 
-        this->OHLCs.push_back(ohlc);
+                ohlc.set_averageprice(ohlc.value() / ohlc.volume());
+                
+                this->OHLCs.push_back(ohlc);
+                
+                ohlc = OHLC();
+            }
+        }
 
-        ohlc = OHLC(); 
+        transactionMap.clear();
     }
 
     return this->OHLCs;
@@ -82,6 +101,8 @@ void OHLCService::OHLCGenerator::LoadTransactions(const std::filesystem::path pa
 
                 size_t quantity = 0, price = 0;
 
+                std::string stock;
+
                 try
                 {
                     transaction = json::parse(line);
@@ -95,18 +116,21 @@ void OHLCService::OHLCGenerator::LoadTransactions(const std::filesystem::path pa
                         price = std::atoi(transaction["price"].template get<std::string>().c_str());
                     else if (transaction.contains("executed_price"))
                         price = std::atoi(transaction["executed_price"].template get<std::string>().c_str());
+                    
+                    if (transaction.contains("stock_code"))
+                        stock = transaction["stock_code"].template get<std::string>();
                 }
                 catch (std::exception& e)
                 {
                     std::cout << "Exception occured while parsing a transaction: " << e.what() << std::endl;
                 }
 
-                transactions.emplace_back(quantity, price);
+                transactions.emplace_back(stock, quantity, price);
             }
             
             this->Transactions[period] = transactions;
-
             transactions.clear();
+
 
             stream.close();
         } 

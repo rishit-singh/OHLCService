@@ -208,9 +208,10 @@ class OHLC final :
 
   enum : int {
     kPeriodFieldNumber = 1,
-    kVolumeFieldNumber = 2,
-    kValueFieldNumber = 3,
-    kAveragePriceFieldNumber = 4,
+    kStockFieldNumber = 2,
+    kVolumeFieldNumber = 3,
+    kValueFieldNumber = 4,
+    kAveragePriceFieldNumber = 5,
   };
   // optional string Period = 1;
   bool has_period() const;
@@ -229,7 +230,24 @@ class OHLC final :
   std::string* _internal_mutable_period();
 
   public:
-  // optional int32 Volume = 2;
+  // optional string Stock = 2;
+  bool has_stock() const;
+  void clear_stock() ;
+  const std::string& stock() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_stock(Arg_&& arg, Args_... args);
+  std::string* mutable_stock();
+  PROTOBUF_NODISCARD std::string* release_stock();
+  void set_allocated_stock(std::string* value);
+
+  private:
+  const std::string& _internal_stock() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_stock(
+      const std::string& value);
+  std::string* _internal_mutable_stock();
+
+  public:
+  // optional int32 Volume = 3;
   bool has_volume() const;
   void clear_volume() ;
   ::int32_t volume() const;
@@ -240,7 +258,7 @@ class OHLC final :
   void _internal_set_volume(::int32_t value);
 
   public:
-  // optional int32 Value = 3;
+  // optional int32 Value = 4;
   bool has_value() const;
   void clear_value() ;
   ::int32_t value() const;
@@ -251,7 +269,7 @@ class OHLC final :
   void _internal_set_value(::int32_t value);
 
   public:
-  // optional double AveragePrice = 4;
+  // optional double AveragePrice = 5;
   bool has_averageprice() const;
   void clear_averageprice() ;
   double averageprice() const;
@@ -268,8 +286,8 @@ class OHLC final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
-      31, 2>
+      3, 5, 0,
+      36, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -288,6 +306,7 @@ class OHLC final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr period_;
+    ::google::protobuf::internal::ArenaStringPtr stock_;
     ::int32_t volume_;
     ::int32_t value_;
     double averageprice_;
@@ -567,15 +586,86 @@ inline void OHLC::set_allocated_period(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:OHLCService.OHLC.Period)
 }
 
-// optional int32 Volume = 2;
-inline bool OHLC::has_volume() const {
+// optional string Stock = 2;
+inline bool OHLC::has_stock() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void OHLC::clear_stock() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.stock_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& OHLC::stock() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:OHLCService.OHLC.Stock)
+  return _internal_stock();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void OHLC::set_stock(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.stock_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:OHLCService.OHLC.Stock)
+}
+inline std::string* OHLC::mutable_stock() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_stock();
+  // @@protoc_insertion_point(field_mutable:OHLCService.OHLC.Stock)
+  return _s;
+}
+inline const std::string& OHLC::_internal_stock() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.stock_.Get();
+}
+inline void OHLC::_internal_set_stock(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.stock_.Set(value, GetArena());
+}
+inline std::string* OHLC::_internal_mutable_stock() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.stock_.Mutable( GetArena());
+}
+inline std::string* OHLC::release_stock() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:OHLCService.OHLC.Stock)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.stock_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.stock_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void OHLC::set_allocated_stock(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.stock_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.stock_.IsDefault()) {
+          _impl_.stock_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:OHLCService.OHLC.Stock)
+}
+
+// optional int32 Volume = 3;
+inline bool OHLC::has_volume() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline void OHLC::clear_volume() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.volume_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline ::int32_t OHLC::volume() const {
   // @@protoc_insertion_point(field_get:OHLCService.OHLC.Volume)
@@ -591,19 +681,19 @@ inline ::int32_t OHLC::_internal_volume() const {
 }
 inline void OHLC::_internal_set_volume(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   _impl_.volume_ = value;
 }
 
-// optional int32 Value = 3;
+// optional int32 Value = 4;
 inline bool OHLC::has_value() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;
 }
 inline void OHLC::clear_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.value_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline ::int32_t OHLC::value() const {
   // @@protoc_insertion_point(field_get:OHLCService.OHLC.Value)
@@ -619,19 +709,19 @@ inline ::int32_t OHLC::_internal_value() const {
 }
 inline void OHLC::_internal_set_value(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   _impl_.value_ = value;
 }
 
-// optional double AveragePrice = 4;
+// optional double AveragePrice = 5;
 inline bool OHLC::has_averageprice() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline void OHLC::clear_averageprice() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.averageprice_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline double OHLC::averageprice() const {
   // @@protoc_insertion_point(field_get:OHLCService.OHLC.AveragePrice)
@@ -647,7 +737,7 @@ inline double OHLC::_internal_averageprice() const {
 }
 inline void OHLC::_internal_set_averageprice(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   _impl_.averageprice_ = value;
 }
 

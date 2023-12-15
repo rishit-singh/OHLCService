@@ -5,17 +5,17 @@ package OHLCService;
 message OHLC
 {
     optional string Period = 1;
-    
-    optional int32 Volume = 2;
 
-    optional int32 Value = 3;
+    optional string Stock = 2;
+
+    optional int32 Volume = 3;
+
+    optional int32 Value = 4;
     
-    optional double AveragePrice = 4;
+    optional double AveragePrice = 5;
 }
 
 message OHLCContainer
 {
     repeated OHLC OHLCs = 1;
 }
-
-

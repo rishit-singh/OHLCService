@@ -14,13 +14,17 @@ using json = nlohmann::json;
 
 namespace OHLCService
 {
+    /// @brief Transaction of a stock
     struct Transaction
     {
         size_t Quantity;
 
         size_t Price;
 
-        Transaction(size_t, size_t );
+        /// @brief Stock ID
+        std::string Stock; 
+ 
+        Transaction(std::string stock, size_t, size_t);
     };
 
     /// @brief Helper class for generating and managing OHLCs
@@ -32,7 +36,6 @@ namespace OHLCService
 
         /// @brief Loaded transactions
         std::map<const std::string, std::vector<Transaction>> Transactions;
-
 
         /// @brief Calculates the volume from the given transaction 
         /// @param transactions Transactions to use
