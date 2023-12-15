@@ -22,6 +22,27 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace OHLCService {
 
+inline constexpr Request::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : stock_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Request::Request(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct RequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RequestDefaultTypeInternal() {}
+  union {
+    Request _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RequestDefaultTypeInternal _Request_default_instance_;
+
 inline constexpr OHLC::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -68,7 +89,7 @@ struct OHLCContainerDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OHLCContainerDefaultTypeInternal _OHLCContainer_default_instance_;
 }  // namespace OHLCService
-static ::_pb::Metadata file_level_metadata_ohlc_2eproto[2];
+static ::_pb::Metadata file_level_metadata_ohlc_2eproto[3];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_ohlc_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -102,17 +123,28 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::OHLCService::OHLCContainer, _impl_.ohlcs_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::OHLCService::Request, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::OHLCService::Request, _impl_.stock_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, 13, -1, sizeof(::OHLCService::OHLC)},
         {18, -1, -1, sizeof(::OHLCService::OHLCContainer)},
+        {27, -1, -1, sizeof(::OHLCService::Request)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::OHLCService::_OHLC_default_instance_._instance,
     &::OHLCService::_OHLCContainer_default_instance_._instance,
+    &::OHLCService::_Request_default_instance_._instance,
 };
 const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\nohlc.proto\022\013OHLCService\"\256\001\n\004OHLC\022\023\n\006Pe"
@@ -121,19 +153,21 @@ const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "AveragePrice\030\005 \001(\001H\004\210\001\001B\t\n\007_PeriodB\010\n\006_S"
     "tockB\t\n\007_VolumeB\010\n\006_ValueB\017\n\r_AveragePri"
     "ce\"1\n\rOHLCContainer\022 \n\005OHLCs\030\001 \003(\0132\021.OHL"
-    "CService.OHLCb\006proto3"
+    "CService.OHLC\"\030\n\007Request\022\r\n\005Stock\030\001 \001(\t2"
+    "G\n\nOHLCServer\0229\n\016GetOHLCByStock\022\024.OHLCSe"
+    "rvice.Request\032\021.OHLCService.OHLCb\006proto3"
 };
 static ::absl::once_flag descriptor_table_ohlc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ohlc_2eproto = {
     false,
     false,
-    261,
+    360,
     descriptor_table_protodef_ohlc_2eproto,
     "ohlc.proto",
     &descriptor_table_ohlc_2eproto_once,
     nullptr,
     0,
-    2,
+    3,
     schemas,
     file_default_instances,
     TableStruct_ohlc_2eproto::offsets,
@@ -689,6 +723,196 @@ void OHLCContainer::InternalSwap(OHLCContainer* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ohlc_2eproto_getter, &descriptor_table_ohlc_2eproto_once,
       file_level_metadata_ohlc_2eproto[1]);
+}
+// ===================================================================
+
+class Request::_Internal {
+ public:
+};
+
+Request::Request(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:OHLCService.Request)
+}
+inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : stock_(arena, from.stock_),
+        _cached_size_{0} {}
+
+Request::Request(
+    ::google::protobuf::Arena* arena,
+    const Request& from)
+    : ::google::protobuf::Message(arena) {
+  Request* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:OHLCService.Request)
+}
+inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : stock_(arena),
+        _cached_size_{0} {}
+
+inline void Request::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Request::~Request() {
+  // @@protoc_insertion_point(destructor:OHLCService.Request)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Request::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.stock_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void Request::Clear() {
+// @@protoc_insertion_point(message_clear_start:OHLCService.Request)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.stock_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* Request::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 33, 2> Request::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Request_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string Stock = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.stock_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string Stock = 1;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.stock_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\23\5\0\0\0\0\0\0"
+    "OHLCService.Request"
+    "Stock"
+  }},
+};
+
+::uint8_t* Request::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OHLCService.Request)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string Stock = 1;
+  if (!this->_internal_stock().empty()) {
+    const std::string& _s = this->_internal_stock();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "OHLCService.Request.Stock");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OHLCService.Request)
+  return target;
+}
+
+::size_t Request::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OHLCService.Request)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string Stock = 1;
+  if (!this->_internal_stock().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_stock());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData Request::_class_data_ = {
+    Request::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* Request::GetClassData() const {
+  return &_class_data_;
+}
+
+void Request::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<Request*>(&to_msg);
+  auto& from = static_cast<const Request&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OHLCService.Request)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_stock().empty()) {
+    _this->_internal_set_stock(from._internal_stock());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Request::CopyFrom(const Request& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OHLCService.Request)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool Request::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* Request::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Request::InternalSwap(Request* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.stock_, &other->_impl_.stock_, arena);
+}
+
+::google::protobuf::Metadata Request::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_ohlc_2eproto_getter, &descriptor_table_ohlc_2eproto_once,
+      file_level_metadata_ohlc_2eproto[2]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace OHLCService

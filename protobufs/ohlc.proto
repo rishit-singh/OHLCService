@@ -19,3 +19,13 @@ message OHLCContainer
 {
     repeated OHLC OHLCs = 1;
 }
+
+message Request
+{   
+    string Stock = 1;
+}
+
+service OHLCServer
+{
+    rpc GetOHLCByStock(Request) returns (OHLC); 
+}

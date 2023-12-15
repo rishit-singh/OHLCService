@@ -62,6 +62,7 @@ protobuf_generate(
 file(GLOB OHLCService_SOURCES src/*.cpp)
 file(GLOB Kafka_SOURCES src/kafka/*.cpp)
 file(GLOB protobufs_SOURCES protofs/*.cc)
+file(GLOB RPC_SOURCES src/rpc/*.cpp)
 
 add_library(kafka ${Kafka_SOURCES})
 target_include_directories(kafka PUBLIC include/kafka)
@@ -70,6 +71,10 @@ target_link_libraries(kafka PUBLIC  rdkafka cppkafka nlohmann_json::nlohmann_jso
 add_library(libOHLCService ${OHLCService_SOURCES})
 target_include_directories(libOHLCService PUBLIC include/ protobufs/ ${PROTO_HDRS})
 target_link_libraries (libOHLCService PUBLIC proto-objects  rdkafka cppkafka nlohmann_json::nlohmann_json absl::base absl::strings ${Protobuf_LIBRARIES})
+
+add_library(RPC ${RPC_SOURCES})
+target_include_directories(RPC PUBLIC include/rpc protobufs/ ${CMAKE_CURRENT_LIST_DIR})
+target_link_libraries (RPC PUBLIC proto-objects rdkafka cppkafka nlohmann_json::nlohmann_json absl::base absl::strings gRPC::grpc++ ${Protobuf_LIBRARIES})
 
 add_executable(OHLCService src/main.cpp)
 target_include_directories(OHLCService PRIVATE include/)
@@ -82,3 +87,7 @@ target_link_libraries(OHLCProducer libOHLCService proto-objects ${Protobuf_LIBRA
 add_executable(OHLCConsumer src/ohlc_consumer.cpp)
 target_include_directories(OHLCConsumer PRIVATE include/)
 target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+
+add_executable(OHLCServer src/server.cpp)
+target_include_directories(OHLCServer PRIVATE include/ protobufs/ ${CMAKE_CURRENT_LIST_DIR})
+target_link_libraries(OHLCServer libOHLCService proto-objects ${Protobuf_LIBRARIES} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 

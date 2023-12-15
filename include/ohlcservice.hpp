@@ -17,12 +17,12 @@ namespace OHLCService
     /// @brief Transaction of a stock
     struct Transaction
     {
+        /// @brief Stock ID
+        std::string Stock; 
+        
         size_t Quantity;
 
         size_t Price;
-
-        /// @brief Stock ID
-        std::string Stock; 
  
         Transaction(std::string stock, size_t, size_t);
     };
