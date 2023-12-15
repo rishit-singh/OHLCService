@@ -70,24 +70,24 @@ struct OHLCDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OHLCDefaultTypeInternal _OHLC_default_instance_;
 
-inline constexpr OHLCContainer::Impl_::Impl_(
+inline constexpr Response::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : ohlcs_{},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR OHLCContainer::OHLCContainer(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Response::Response(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct OHLCContainerDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR OHLCContainerDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~OHLCContainerDefaultTypeInternal() {}
+struct ResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ResponseDefaultTypeInternal() {}
   union {
-    OHLCContainer _instance;
+    Response _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OHLCContainerDefaultTypeInternal _OHLCContainer_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseDefaultTypeInternal _Response_default_instance_;
 }  // namespace OHLCService
 static ::_pb::Metadata file_level_metadata_ohlc_2eproto[3];
 static constexpr const ::_pb::EnumDescriptor**
@@ -115,14 +115,14 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     3,
     4,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::OHLCService::OHLCContainer, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::OHLCService::Response, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::OHLCService::OHLCContainer, _impl_.ohlcs_),
+    PROTOBUF_FIELD_OFFSET(::OHLCService::Response, _impl_.ohlcs_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::OHLCService::Request, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -137,13 +137,13 @@ const ::uint32_t TableStruct_ohlc_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, 13, -1, sizeof(::OHLCService::OHLC)},
-        {18, -1, -1, sizeof(::OHLCService::OHLCContainer)},
+        {18, -1, -1, sizeof(::OHLCService::Response)},
         {27, -1, -1, sizeof(::OHLCService::Request)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::OHLCService::_OHLC_default_instance_._instance,
-    &::OHLCService::_OHLCContainer_default_instance_._instance,
+    &::OHLCService::_Response_default_instance_._instance,
     &::OHLCService::_Request_default_instance_._instance,
 };
 const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -152,10 +152,10 @@ const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "olume\030\003 \001(\005H\002\210\001\001\022\022\n\005Value\030\004 \001(\005H\003\210\001\001\022\031\n\014"
     "AveragePrice\030\005 \001(\001H\004\210\001\001B\t\n\007_PeriodB\010\n\006_S"
     "tockB\t\n\007_VolumeB\010\n\006_ValueB\017\n\r_AveragePri"
-    "ce\"1\n\rOHLCContainer\022 \n\005OHLCs\030\001 \003(\0132\021.OHL"
-    "CService.OHLC\"\030\n\007Request\022\r\n\005Stock\030\001 \001(\t2"
-    "G\n\nOHLCServer\0229\n\016GetOHLCByStock\022\024.OHLCSe"
-    "rvice.Request\032\021.OHLCService.OHLCb\006proto3"
+    "ce\",\n\010Response\022 \n\005OHLCs\030\001 \003(\0132\021.OHLCServ"
+    "ice.OHLC\"\030\n\007Request\022\r\n\005Stock\030\001 \001(\t2L\n\nOH"
+    "LCServer\022>\n\017GetOHLCsByStock\022\024.OHLCServic"
+    "e.Request\032\025.OHLCService.Responseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_ohlc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_ohlc_2eproto = {
@@ -543,54 +543,54 @@ void OHLC::InternalSwap(OHLC* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class OHLCContainer::_Internal {
+class Response::_Internal {
  public:
 };
 
-OHLCContainer::OHLCContainer(::google::protobuf::Arena* arena)
+Response::Response(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:OHLCService.OHLCContainer)
+  // @@protoc_insertion_point(arena_constructor:OHLCService.Response)
 }
-inline PROTOBUF_NDEBUG_INLINE OHLCContainer::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : ohlcs_{visibility, arena, from.ohlcs_},
         _cached_size_{0} {}
 
-OHLCContainer::OHLCContainer(
+Response::Response(
     ::google::protobuf::Arena* arena,
-    const OHLCContainer& from)
+    const Response& from)
     : ::google::protobuf::Message(arena) {
-  OHLCContainer* const _this = this;
+  Response* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:OHLCService.OHLCContainer)
+  // @@protoc_insertion_point(copy_constructor:OHLCService.Response)
 }
-inline PROTOBUF_NDEBUG_INLINE OHLCContainer::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : ohlcs_{visibility, arena},
         _cached_size_{0} {}
 
-inline void OHLCContainer::SharedCtor(::_pb::Arena* arena) {
+inline void Response::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-OHLCContainer::~OHLCContainer() {
-  // @@protoc_insertion_point(destructor:OHLCService.OHLCContainer)
+Response::~Response() {
+  // @@protoc_insertion_point(destructor:OHLCService.Response)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void OHLCContainer::SharedDtor() {
+inline void Response::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void OHLCContainer::Clear() {
-// @@protoc_insertion_point(message_clear_start:OHLCService.OHLCContainer)
+PROTOBUF_NOINLINE void Response::Clear() {
+// @@protoc_insertion_point(message_clear_start:OHLCService.Response)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -600,7 +600,7 @@ PROTOBUF_NOINLINE void OHLCContainer::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* OHLCContainer::_InternalParse(
+const char* Response::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -608,7 +608,7 @@ const char* OHLCContainer::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> OHLCContainer::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> Response::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -619,17 +619,17 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> OHLCContainer::_table_ = {
     1,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_OHLCContainer_default_instance_._instance,
+    &_Response_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // repeated .OHLCService.OHLC OHLCs = 1;
     {::_pbi::TcParser::FastMtR1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(OHLCContainer, _impl_.ohlcs_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.ohlcs_)}},
   }}, {{
     65535, 65535
   }}, {{
     // repeated .OHLCService.OHLC OHLCs = 1;
-    {PROTOBUF_FIELD_OFFSET(OHLCContainer, _impl_.ohlcs_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.ohlcs_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::OHLCService::OHLC>()},
@@ -637,10 +637,10 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> OHLCContainer::_table_ = {
   }},
 };
 
-::uint8_t* OHLCContainer::_InternalSerialize(
+::uint8_t* Response::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:OHLCService.OHLCContainer)
+  // @@protoc_insertion_point(serialize_to_array_start:OHLCService.Response)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -657,12 +657,12 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> OHLCContainer::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:OHLCService.OHLCContainer)
+  // @@protoc_insertion_point(serialize_to_array_end:OHLCService.Response)
   return target;
 }
 
-::size_t OHLCContainer::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:OHLCService.OHLCContainer)
+::size_t Response::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OHLCService.Response)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -678,18 +678,18 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> OHLCContainer::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData OHLCContainer::_class_data_ = {
-    OHLCContainer::MergeImpl,
+const ::google::protobuf::Message::ClassData Response::_class_data_ = {
+    Response::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* OHLCContainer::GetClassData() const {
+const ::google::protobuf::Message::ClassData* Response::GetClassData() const {
   return &_class_data_;
 }
 
-void OHLCContainer::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<OHLCContainer*>(&to_msg);
-  auto& from = static_cast<const OHLCContainer&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:OHLCService.OHLCContainer)
+void Response::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<Response*>(&to_msg);
+  auto& from = static_cast<const Response&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OHLCService.Response)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -699,27 +699,27 @@ void OHLCContainer::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void OHLCContainer::CopyFrom(const OHLCContainer& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:OHLCService.OHLCContainer)
+void Response::CopyFrom(const Response& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OHLCService.Response)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool OHLCContainer::IsInitialized() const {
+PROTOBUF_NOINLINE bool Response::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* OHLCContainer::AccessCachedSize() const {
+::_pbi::CachedSize* Response::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void OHLCContainer::InternalSwap(OHLCContainer* PROTOBUF_RESTRICT other) {
+void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.ohlcs_.InternalSwap(&other->_impl_.ohlcs_);
 }
 
-::google::protobuf::Metadata OHLCContainer::GetMetadata() const {
+::google::protobuf::Metadata Response::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_ohlc_2eproto_getter, &descriptor_table_ohlc_2eproto_once,
       file_level_metadata_ohlc_2eproto[1]);

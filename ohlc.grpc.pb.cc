@@ -22,7 +22,7 @@
 namespace OHLCService {
 
 static const char* OHLCServer_method_names[] = {
-  "/OHLCService.OHLCServer/GetOHLCByStock",
+  "/OHLCService.OHLCServer/GetOHLCsByStock",
 };
 
 std::unique_ptr< OHLCServer::Stub> OHLCServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -32,28 +32,28 @@ std::unique_ptr< OHLCServer::Stub> OHLCServer::NewStub(const std::shared_ptr< ::
 }
 
 OHLCServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetOHLCByStock_(OHLCServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_GetOHLCsByStock_(OHLCServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status OHLCServer::Stub::GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::OHLC* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::OHLCService::Request, ::OHLCService::OHLC, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOHLCByStock_, context, request, response);
+::grpc::Status OHLCServer::Stub::GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::Response* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::OHLCService::Request, ::OHLCService::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOHLCsByStock_, context, request, response);
 }
 
-void OHLCServer::Stub::async::GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::OHLCService::Request, ::OHLCService::OHLC, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOHLCByStock_, context, request, response, std::move(f));
+void OHLCServer::Stub::async::GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::OHLCService::Request, ::OHLCService::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOHLCsByStock_, context, request, response, std::move(f));
 }
 
-void OHLCServer::Stub::async::GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOHLCByStock_, context, request, response, reactor);
+void OHLCServer::Stub::async::GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOHLCsByStock_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>* OHLCServer::Stub::PrepareAsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::OHLCService::OHLC, ::OHLCService::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOHLCByStock_, context, request);
+::grpc::ClientAsyncResponseReader< ::OHLCService::Response>* OHLCServer::Stub::PrepareAsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::OHLCService::Response, ::OHLCService::Request, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOHLCsByStock_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>* OHLCServer::Stub::AsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::OHLCService::Response>* OHLCServer::Stub::AsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetOHLCByStockRaw(context, request, cq);
+    this->PrepareAsyncGetOHLCsByStockRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -62,19 +62,19 @@ OHLCServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OHLCServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< OHLCServer::Service, ::OHLCService::Request, ::OHLCService::OHLC, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< OHLCServer::Service, ::OHLCService::Request, ::OHLCService::Response, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](OHLCServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::OHLCService::Request* req,
-             ::OHLCService::OHLC* resp) {
-               return service->GetOHLCByStock(ctx, req, resp);
+             ::OHLCService::Response* resp) {
+               return service->GetOHLCsByStock(ctx, req, resp);
              }, this)));
 }
 
 OHLCServer::Service::~Service() {
 }
 
-::grpc::Status OHLCServer::Service::GetOHLCByStock(::grpc::ServerContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response) {
+::grpc::Status OHLCServer::Service::GetOHLCsByStock(::grpc::ServerContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response) {
   (void) context;
   (void) request;
   (void) response;

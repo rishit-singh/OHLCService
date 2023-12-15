@@ -35,41 +35,41 @@ class OHLCServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::OHLC* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>> AsyncGetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>>(AsyncGetOHLCByStockRaw(context, request, cq));
+    virtual ::grpc::Status GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::Response* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>> AsyncGetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>>(AsyncGetOHLCsByStockRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>> PrepareAsyncGetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>>(PrepareAsyncGetOHLCByStockRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>> PrepareAsyncGetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>>(PrepareAsyncGetOHLCsByStockRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>* AsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::OHLC>* PrepareAsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>* AsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::OHLCService::Response>* PrepareAsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::OHLC* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>> AsyncGetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>>(AsyncGetOHLCByStockRaw(context, request, cq));
+    ::grpc::Status GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::OHLCService::Response* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>> AsyncGetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>>(AsyncGetOHLCsByStockRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>> PrepareAsyncGetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>>(PrepareAsyncGetOHLCByStockRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>> PrepareAsyncGetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>>(PrepareAsyncGetOHLCsByStockRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, std::function<void(::grpc::Status)>) override;
-      void GetOHLCByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, std::function<void(::grpc::Status)>) override;
+      void GetOHLCsByStock(::grpc::ClientContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -81,9 +81,9 @@ class OHLCServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>* AsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::OHLCService::OHLC>* PrepareAsyncGetOHLCByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetOHLCByStock_;
+    ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>* AsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::OHLCService::Response>* PrepareAsyncGetOHLCsByStockRaw(::grpc::ClientContext* context, const ::OHLCService::Request& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_GetOHLCsByStock_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -91,147 +91,147 @@ class OHLCServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetOHLCByStock(::grpc::ServerContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response);
+    virtual ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetOHLCByStock : public BaseClass {
+  class WithAsyncMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetOHLCByStock() {
+    WithAsyncMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_GetOHLCByStock() override {
+    ~WithAsyncMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetOHLCByStock(::grpc::ServerContext* context, ::OHLCService::Request* request, ::grpc::ServerAsyncResponseWriter< ::OHLCService::OHLC>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetOHLCsByStock(::grpc::ServerContext* context, ::OHLCService::Request* request, ::grpc::ServerAsyncResponseWriter< ::OHLCService::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOHLCByStock<Service > AsyncService;
+  typedef WithAsyncMethod_GetOHLCsByStock<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetOHLCByStock : public BaseClass {
+  class WithCallbackMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetOHLCByStock() {
+    WithCallbackMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::OHLCService::Request, ::OHLCService::OHLC>(
+          new ::grpc::internal::CallbackUnaryHandler< ::OHLCService::Request, ::OHLCService::Response>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::OHLCService::Request* request, ::OHLCService::OHLC* response) { return this->GetOHLCByStock(context, request, response); }));}
-    void SetMessageAllocatorFor_GetOHLCByStock(
-        ::grpc::MessageAllocator< ::OHLCService::Request, ::OHLCService::OHLC>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::OHLCService::Request* request, ::OHLCService::Response* response) { return this->GetOHLCsByStock(context, request, response); }));}
+    void SetMessageAllocatorFor_GetOHLCsByStock(
+        ::grpc::MessageAllocator< ::OHLCService::Request, ::OHLCService::Response>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::OHLCService::Request, ::OHLCService::OHLC>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::OHLCService::Request, ::OHLCService::Response>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetOHLCByStock() override {
+    ~WithCallbackMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetOHLCByStock(
-      ::grpc::CallbackServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* GetOHLCsByStock(
+      ::grpc::CallbackServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetOHLCByStock<Service > CallbackService;
+  typedef WithCallbackMethod_GetOHLCsByStock<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_GetOHLCByStock : public BaseClass {
+  class WithGenericMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetOHLCByStock() {
+    WithGenericMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_GetOHLCByStock() override {
+    ~WithGenericMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetOHLCByStock : public BaseClass {
+  class WithRawMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetOHLCByStock() {
+    WithRawMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_GetOHLCByStock() override {
+    ~WithRawMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetOHLCByStock(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetOHLCsByStock(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetOHLCByStock : public BaseClass {
+  class WithRawCallbackMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetOHLCByStock() {
+    WithRawCallbackMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOHLCByStock(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOHLCsByStock(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetOHLCByStock() override {
+    ~WithRawCallbackMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetOHLCByStock(
+    virtual ::grpc::ServerUnaryReactor* GetOHLCsByStock(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetOHLCByStock : public BaseClass {
+  class WithStreamedUnaryMethod_GetOHLCsByStock : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetOHLCByStock() {
+    WithStreamedUnaryMethod_GetOHLCsByStock() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::OHLCService::Request, ::OHLCService::OHLC>(
+          ::OHLCService::Request, ::OHLCService::Response>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::OHLCService::Request, ::OHLCService::OHLC>* streamer) {
-                       return this->StreamedGetOHLCByStock(context,
+                     ::OHLCService::Request, ::OHLCService::Response>* streamer) {
+                       return this->StreamedGetOHLCsByStock(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetOHLCByStock() override {
+    ~WithStreamedUnaryMethod_GetOHLCsByStock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetOHLCByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::OHLC* /*response*/) override {
+    ::grpc::Status GetOHLCsByStock(::grpc::ServerContext* /*context*/, const ::OHLCService::Request* /*request*/, ::OHLCService::Response* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetOHLCByStock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::OHLCService::Request,::OHLCService::OHLC>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetOHLCsByStock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::OHLCService::Request,::OHLCService::Response>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOHLCByStock<Service > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetOHLCsByStock<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOHLCByStock<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOHLCsByStock<Service > StreamedService;
 };
 
 }  // namespace OHLCService

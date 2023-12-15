@@ -5,9 +5,10 @@
 
 namespace OHLCService::gRPC
 {
+    /// @brief OHLCServer RPC service implementation
     class OHLCServerImpl final : public OHLCServer::Service
     {
-        grpc::Status GetOHLCByStock(grpc::ServerContext* context, const Request* request, OHLC* response) override;
+        grpc::Status GetOHLCsByStock(grpc::ServerContext* context, const Request* request, Response* response) override;
     };
 }
 

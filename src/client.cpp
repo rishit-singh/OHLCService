@@ -20,7 +20,7 @@ private:
 public:
     void Connect(std::string);
 
-    OHLC GetOHLCsByStock(std::string);
+    std::vector<OHLC> GetOHLCsByStock(std::string);
 
     OHLCClient();
 };
@@ -38,17 +38,19 @@ void OHLCClient::Connect(std::string address)
     this->mStub = OHLCServer::NewStub(this->mChannel);
 }
 
-OHLC OHLCClient::GetOHLCsByStock(std::string stock)
+std::vector<OHLC> OHLCClient::GetOHLCsByStock(std::string stock)
 {
-    OHLC response;
+    Response response;
 
     OHLCService::Request request;
 
     request.set_stock(stock); 
 
-    grpc::Status status = this->mStub->GetOHLCByStock(&this->mClient, request, &response);
+    grpc::Status status = this->mStub->GetOHLCsByStock(&this->mClient, request, &response);
 
-    return response;
+    auto it = response.ohlcs();
+
+    return std::vector<OHLC>(it.begin(), it.end());
 } 
 
 int main(int argc, char** argv)
@@ -73,7 +75,7 @@ int main(int argc, char** argv)
 
     client.Connect(argv[1]);
 
-    OHLC response = client.GetOHLCsByStock(argv[2]);
+    OHLC response = client.GetOHLCsByStock(argv[2])[0];
 
     std::cout
         << "Payload: OHLC(Stock=" << response.stock()

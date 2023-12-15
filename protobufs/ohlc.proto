@@ -15,7 +15,7 @@ message OHLC
     optional double AveragePrice = 5;
 }
 
-message OHLCContainer
+message Response
 {
     repeated OHLC OHLCs = 1;
 }
@@ -27,5 +27,5 @@ message Request
 
 service OHLCServer
 {
-    rpc GetOHLCByStock(Request) returns (OHLC); 
+    rpc GetOHLCsByStock(Request) returns (Response); 
 }

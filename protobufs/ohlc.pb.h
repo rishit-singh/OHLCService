@@ -59,12 +59,12 @@ namespace OHLCService {
 class OHLC;
 struct OHLCDefaultTypeInternal;
 extern OHLCDefaultTypeInternal _OHLC_default_instance_;
-class OHLCContainer;
-struct OHLCContainerDefaultTypeInternal;
-extern OHLCContainerDefaultTypeInternal _OHLCContainer_default_instance_;
 class Request;
 struct RequestDefaultTypeInternal;
 extern RequestDefaultTypeInternal _Request_default_instance_;
+class Response;
+struct ResponseDefaultTypeInternal;
+extern ResponseDefaultTypeInternal _Response_default_instance_;
 }  // namespace OHLCService
 namespace google {
 namespace protobuf {
@@ -500,26 +500,26 @@ class OHLC final :
   friend struct ::TableStruct_ohlc_2eproto;
 };// -------------------------------------------------------------------
 
-class OHLCContainer final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:OHLCService.OHLCContainer) */ {
+class Response final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:OHLCService.Response) */ {
  public:
-  inline OHLCContainer() : OHLCContainer(nullptr) {}
-  ~OHLCContainer() override;
+  inline Response() : Response(nullptr) {}
+  ~Response() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR OHLCContainer(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Response(::google::protobuf::internal::ConstantInitialized);
 
-  inline OHLCContainer(const OHLCContainer& from)
-      : OHLCContainer(nullptr, from) {}
-  OHLCContainer(OHLCContainer&& from) noexcept
-    : OHLCContainer() {
+  inline Response(const Response& from)
+      : Response(nullptr, from) {}
+  Response(Response&& from) noexcept
+    : Response() {
     *this = ::std::move(from);
   }
 
-  inline OHLCContainer& operator=(const OHLCContainer& from) {
+  inline Response& operator=(const Response& from) {
     CopyFrom(from);
     return *this;
   }
-  inline OHLCContainer& operator=(OHLCContainer&& from) noexcept {
+  inline Response& operator=(Response&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -551,20 +551,20 @@ class OHLCContainer final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const OHLCContainer& default_instance() {
+  static const Response& default_instance() {
     return *internal_default_instance();
   }
-  static inline const OHLCContainer* internal_default_instance() {
-    return reinterpret_cast<const OHLCContainer*>(
-               &_OHLCContainer_default_instance_);
+  static inline const Response* internal_default_instance() {
+    return reinterpret_cast<const Response*>(
+               &_Response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(OHLCContainer& a, OHLCContainer& b) {
+  friend void swap(Response& a, Response& b) {
     a.Swap(&b);
   }
-  inline void Swap(OHLCContainer* other) {
+  inline void Swap(Response* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -577,7 +577,7 @@ class OHLCContainer final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(OHLCContainer* other) {
+  void UnsafeArenaSwap(Response* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -585,14 +585,14 @@ class OHLCContainer final :
 
   // implements Message ----------------------------------------------
 
-  OHLCContainer* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<OHLCContainer>(arena);
+  Response* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Response>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const OHLCContainer& from);
+  void CopyFrom(const Response& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const OHLCContainer& from) {
-    OHLCContainer::MergeImpl(*this, from);
+  void MergeFrom( const Response& from) {
+    Response::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -610,16 +610,16 @@ class OHLCContainer final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(OHLCContainer* other);
+  void InternalSwap(Response* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "OHLCService.OHLCContainer";
+    return "OHLCService.Response";
   }
   protected:
-  explicit OHLCContainer(::google::protobuf::Arena* arena);
-  OHLCContainer(::google::protobuf::Arena* arena, const OHLCContainer& from);
+  explicit Response(::google::protobuf::Arena* arena);
+  Response(::google::protobuf::Arena* arena, const Response& from);
   public:
 
   static const ClassData _class_data_;
@@ -652,7 +652,7 @@ class OHLCContainer final :
   ::OHLCService::OHLC* add_ohlcs();
   const ::google::protobuf::RepeatedPtrField< ::OHLCService::OHLC >&
       ohlcs() const;
-  // @@protoc_insertion_point(class_scope:OHLCService.OHLCContainer)
+  // @@protoc_insertion_point(class_scope:OHLCService.Response)
  private:
   class _Internal;
 
@@ -927,53 +927,53 @@ inline void OHLC::_internal_set_averageprice(double value) {
 
 // -------------------------------------------------------------------
 
-// OHLCContainer
+// Response
 
 // repeated .OHLCService.OHLC OHLCs = 1;
-inline int OHLCContainer::_internal_ohlcs_size() const {
+inline int Response::_internal_ohlcs_size() const {
   return _internal_ohlcs().size();
 }
-inline int OHLCContainer::ohlcs_size() const {
+inline int Response::ohlcs_size() const {
   return _internal_ohlcs_size();
 }
-inline void OHLCContainer::clear_ohlcs() {
+inline void Response::clear_ohlcs() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.ohlcs_.Clear();
 }
-inline ::OHLCService::OHLC* OHLCContainer::mutable_ohlcs(int index)
+inline ::OHLCService::OHLC* Response::mutable_ohlcs(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:OHLCService.OHLCContainer.OHLCs)
+  // @@protoc_insertion_point(field_mutable:OHLCService.Response.OHLCs)
   return _internal_mutable_ohlcs()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>* OHLCContainer::mutable_ohlcs()
+inline ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>* Response::mutable_ohlcs()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:OHLCService.OHLCContainer.OHLCs)
+  // @@protoc_insertion_point(field_mutable_list:OHLCService.Response.OHLCs)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_ohlcs();
 }
-inline const ::OHLCService::OHLC& OHLCContainer::ohlcs(int index) const
+inline const ::OHLCService::OHLC& Response::ohlcs(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:OHLCService.OHLCContainer.OHLCs)
+  // @@protoc_insertion_point(field_get:OHLCService.Response.OHLCs)
   return _internal_ohlcs().Get(index);
 }
-inline ::OHLCService::OHLC* OHLCContainer::add_ohlcs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::OHLCService::OHLC* Response::add_ohlcs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::OHLCService::OHLC* _add = _internal_mutable_ohlcs()->Add();
-  // @@protoc_insertion_point(field_add:OHLCService.OHLCContainer.OHLCs)
+  // @@protoc_insertion_point(field_add:OHLCService.Response.OHLCs)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>& OHLCContainer::ohlcs() const
+inline const ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>& Response::ohlcs() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:OHLCService.OHLCContainer.OHLCs)
+  // @@protoc_insertion_point(field_list:OHLCService.Response.OHLCs)
   return _internal_ohlcs();
 }
 inline const ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>&
-OHLCContainer::_internal_ohlcs() const {
+Response::_internal_ohlcs() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.ohlcs_;
 }
 inline ::google::protobuf::RepeatedPtrField<::OHLCService::OHLC>*
-OHLCContainer::_internal_mutable_ohlcs() {
+Response::_internal_mutable_ohlcs() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.ohlcs_;
 }
