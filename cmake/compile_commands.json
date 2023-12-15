@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/libOHLCService.dir/src/main.cpp.o -c /home/coderish/src/repos/OHLCService/src/main.cpp",
+  "file": "/home/coderish/src/repos/OHLCService/src/main.cpp",
+  "output": "CMakeFiles/libOHLCService.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/libOHLCService.dir/src/ohlcservice.cpp.o -c /home/coderish/src/repos/OHLCService/src/ohlcservice.cpp",
+  "file": "/home/coderish/src/repos/OHLCService/src/ohlcservice.cpp",
+  "output": "CMakeFiles/libOHLCService.dir/src/ohlcservice.cpp.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/libOHLCService.dir/src/util.cpp.o -c /home/coderish/src/repos/OHLCService/src/util.cpp",
+  "file": "/home/coderish/src/repos/OHLCService/src/util.cpp",
+  "output": "CMakeFiles/libOHLCService.dir/src/util.cpp.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/libOHLCService.dir/ohlc.pb.cc.o -c /home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "file": "/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "output": "CMakeFiles/libOHLCService.dir/ohlc.pb.cc.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/protobufs.dir/ohlc.pb.cc.o -c /home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "file": "/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "output": "CMakeFiles/protobufs.dir/ohlc.pb.cc.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/OHLCService.dir/src/main.cpp.o -c /home/coderish/src/repos/OHLCService/src/main.cpp",
+  "file": "/home/coderish/src/repos/OHLCService/src/main.cpp",
+  "output": "CMakeFiles/OHLCService.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/coderish/src/repos/OHLCService/cmake",
+  "command": "/usr/bin/c++  -I/home/coderish/src/repos/OHLCService/cmake -I/home/coderish/src/repos/OHLCService/include -I/home/coderish/src/repos/OHLCService/protobufs -I/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.h -I/home/coderish/src/repos/OHLCService/cmake/_deps/json-src/include  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g -o CMakeFiles/OHLCService.dir/ohlc.pb.cc.o -c /home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "file": "/home/coderish/src/repos/OHLCService/cmake/ohlc.pb.cc",
+  "output": "CMakeFiles/OHLCService.dir/ohlc.pb.cc.o"
+}
+]

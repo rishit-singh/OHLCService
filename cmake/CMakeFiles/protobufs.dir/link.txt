@@ -1,0 +1,2 @@
+/usr/bin/ar qc libprotobufs.a CMakeFiles/protobufs.dir/ohlc.pb.cc.o
+/usr/bin/ranlib libprotobufs.a

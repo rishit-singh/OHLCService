@@ -1,0 +1,8 @@
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/abseil.dir
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/libOHLCService.dir
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/protobufs.dir
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/OHLCService.dir
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/edit_cache.dir
+/home/coderish/src/repos/OHLCService/cmake/CMakeFiles/rebuild_cache.dir
+/home/coderish/src/repos/OHLCService/cmake/_deps/json-build/CMakeFiles/edit_cache.dir
+/home/coderish/src/repos/OHLCService/cmake/_deps/json-build/CMakeFiles/rebuild_cache.dir

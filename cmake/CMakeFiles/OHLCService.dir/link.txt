@@ -1,0 +1,1 @@
+/usr/bin/c++  -I/opt/local/include/SDL2 -Wall -D_THREAD_SAFE -lprotobuf --std=c++20 -g CMakeFiles/OHLCService.dir/src/main.cpp.o CMakeFiles/OHLCService.dir/ohlc.pb.cc.o -o OHLCService  liblibOHLCService.a libprotobufs.a /usr/lib/libprotobuf.so -labsl::base -labsl::strings -labsl::status 

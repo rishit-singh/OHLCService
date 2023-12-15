@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblibOHLCService.a CMakeFiles/libOHLCService.dir/src/main.cpp.o CMakeFiles/libOHLCService.dir/src/ohlcservice.cpp.o CMakeFiles/libOHLCService.dir/src/util.cpp.o CMakeFiles/libOHLCService.dir/ohlc.pb.cc.o
+/usr/bin/ranlib liblibOHLCService.a
