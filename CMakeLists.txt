@@ -91,3 +91,8 @@ target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRA
 add_executable(OHLCServer src/server.cpp)
 target_include_directories(OHLCServer PRIVATE include/ protobufs/ ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(OHLCServer libOHLCService proto-objects ${Protobuf_LIBRARIES} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+
+add_executable(OHLCClient src/client.cpp)
+target_include_directories(OHLCClient PRIVATE include/ protobufs/ ${CMAKE_CURRENT_LIST_DIR})
+target_link_libraries(OHLCClient libOHLCService proto-objects ${Protobuf_LIBRARIES} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+
