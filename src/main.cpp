@@ -5,8 +5,11 @@ int main(int argc, char** argv)
     OHLCService::OHLCGenerator generator;
 
     generator.LoadTransactions(argv[1]);
-    
-    // for (auto t : generator.GetTransactions())
+
+    generator.GenerateOHLCs();
+
+    for (auto ohlc : generator.GetOHLCs())
+        std::cout << "OHLC(" << "Period=" << ohlc.period() << ", Value=" << ohlc.value() << ", Volume=" << ohlc.volume() << ", AvgPrice=" << ohlc.averageprice() << ");\n";
 
     return 0;
 }

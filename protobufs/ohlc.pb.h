@@ -251,15 +251,15 @@ class OHLC final :
   void _internal_set_value(::int32_t value);
 
   public:
-  // optional int32 AveragePrice = 4;
+  // optional double AveragePrice = 4;
   bool has_averageprice() const;
   void clear_averageprice() ;
-  ::int32_t averageprice() const;
-  void set_averageprice(::int32_t value);
+  double averageprice() const;
+  void set_averageprice(double value);
 
   private:
-  ::int32_t _internal_averageprice() const;
-  void _internal_set_averageprice(::int32_t value);
+  double _internal_averageprice() const;
+  void _internal_set_averageprice(double value);
 
   public:
   // @@protoc_insertion_point(class_scope:OHLCService.OHLC)
@@ -290,7 +290,7 @@ class OHLC final :
     ::google::protobuf::internal::ArenaStringPtr period_;
     ::int32_t volume_;
     ::int32_t value_;
-    ::int32_t averageprice_;
+    double averageprice_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -623,7 +623,7 @@ inline void OHLC::_internal_set_value(::int32_t value) {
   _impl_.value_ = value;
 }
 
-// optional int32 AveragePrice = 4;
+// optional double AveragePrice = 4;
 inline bool OHLC::has_averageprice() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;
@@ -633,19 +633,19 @@ inline void OHLC::clear_averageprice() {
   _impl_.averageprice_ = 0;
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline ::int32_t OHLC::averageprice() const {
+inline double OHLC::averageprice() const {
   // @@protoc_insertion_point(field_get:OHLCService.OHLC.AveragePrice)
   return _internal_averageprice();
 }
-inline void OHLC::set_averageprice(::int32_t value) {
+inline void OHLC::set_averageprice(double value) {
   _internal_set_averageprice(value);
   // @@protoc_insertion_point(field_set:OHLCService.OHLC.AveragePrice)
 }
-inline ::int32_t OHLC::_internal_averageprice() const {
+inline double OHLC::_internal_averageprice() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.averageprice_;
 }
-inline void OHLC::_internal_set_averageprice(::int32_t value) {
+inline void OHLC::_internal_set_averageprice(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000008u;
   _impl_.averageprice_ = value;

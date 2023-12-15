@@ -112,7 +112,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_ohlc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\nohlc.proto\022\013OHLCService\"\220\001\n\004OHLC\022\023\n\006Pe"
     "riod\030\001 \001(\tH\000\210\001\001\022\023\n\006Volume\030\002 \001(\005H\001\210\001\001\022\022\n\005"
-    "Value\030\003 \001(\005H\002\210\001\001\022\031\n\014AveragePrice\030\004 \001(\005H\003"
+    "Value\030\003 \001(\005H\002\210\001\001\022\031\n\014AveragePrice\030\004 \001(\001H\003"
     "\210\001\001B\t\n\007_PeriodB\t\n\007_VolumeB\010\n\006_ValueB\017\n\r_"
     "AveragePrice\"1\n\rOHLCContainer\022 \n\005OHLCs\030\001"
     " \003(\0132\021.OHLCService.OHLCb\006proto3"
@@ -274,9 +274,9 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
     &_OHLC_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // optional int32 AveragePrice = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OHLC, _impl_.averageprice_), 3>(),
-     {32, 3, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_)}},
+    // optional double AveragePrice = 4;
+    {::_pbi::TcParser::FastF64S1,
+     {33, 3, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_)}},
     // optional string Period = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(OHLC, _impl_.period_)}},
@@ -298,9 +298,9 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
     // optional int32 Value = 3;
     {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.value_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // optional int32 AveragePrice = 4;
+    // optional double AveragePrice = 4;
     {PROTOBUF_FIELD_OFFSET(OHLC, _impl_.averageprice_), _Internal::kHasBitsOffset + 3, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    (0 | ::_fl::kFcOptional | ::_fl::kDouble)},
   }},
   // no aux_entries
   {{
@@ -340,11 +340,11 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
             stream, this->_internal_value(), target);
   }
 
-  // optional int32 AveragePrice = 4;
+  // optional double AveragePrice = 4;
   if (cached_has_bits & 0x00000008u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_averageprice(), target);
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        4, this->_internal_averageprice(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -384,10 +384,9 @@ const ::_pbi::TcParseTable<2, 4, 0, 31, 2> OHLC::_table_ = {
           this->_internal_value());
     }
 
-    // optional int32 AveragePrice = 4;
+    // optional double AveragePrice = 4;
     if (cached_has_bits & 0x00000008u) {
-      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-          this->_internal_averageprice());
+      total_size += 9;
     }
 
   }

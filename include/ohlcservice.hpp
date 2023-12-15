@@ -31,7 +31,18 @@ namespace OHLCService
         std::vector<OHLC> OHLCs;
 
         /// @brief Loaded transactions
-        std::map<const std::string_view, std::vector<Transaction>> Transactions;
+        std::map<const std::string, std::vector<Transaction>> Transactions;
+
+
+        /// @brief Calculates the volume from the given transaction 
+        /// @param transactions Transactions to use
+        /// @return Calculated volume
+        size_t GetVolume(const std::vector<Transaction>&);
+    
+        /// @brief Calculates the value from the given transaction 
+        /// @param transactions Transactions to use
+        /// @return Calculated volume
+        size_t GetValue(const std::vector<Transaction>&);
     public:
         /// @brief Loads the transactions from the ndjson files in the given path
         /// @param path Path to transaction period files 
@@ -44,7 +55,7 @@ namespace OHLCService
         /// @brief Gets the transactions from the given period
         /// @param period Transaction period  
         /// @return Fetched transactions.
-        std::vector<Transaction> GetTransactions(const std::string_view); 
+        std::vector<Transaction> GetTransactions(const std::string); 
         
         /// @brief Getter for OHLCs 
         /// @return OHLCs

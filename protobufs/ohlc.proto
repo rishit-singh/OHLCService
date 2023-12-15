@@ -10,7 +10,7 @@ message OHLC
 
     optional int32 Value = 3;
     
-    optional int32 AveragePrice = 4;
+    optional double AveragePrice = 4;
 }
 
 message OHLCContainer

@@ -1,12 +1,51 @@
 #include <ohlcservice.hpp>
 
+
 OHLCService::Transaction::Transaction(size_t quantity, size_t price)
     : Quantity(quantity), Price(price)
 {
 }
 
+size_t OHLCService::OHLCGenerator::GetVolume(const std::vector<Transaction>& transactions)
+{
+    size_t volume = 0; 
+
+    for (auto t : transactions)
+        volume += t.Quantity;
+
+    return volume;
+}
+
+size_t OHLCService::OHLCGenerator::GetValue(const std::vector<Transaction>& transactions)
+{
+    size_t value = 0; 
+
+    for (auto t : transactions)
+        value += (t.Quantity * t.Price);
+
+    return value;
+}
+
 std::vector<OHLCService::OHLC> OHLCService::OHLCGenerator::GenerateOHLCs()
 {
+    OHLCService::OHLC ohlc;
+
+    for (auto const& [key, val] : this->Transactions)
+    { 
+        ohlc.set_period(key);
+        ohlc.set_value(this->GetValue(val));
+        ohlc.set_volume(this->GetVolume(val));
+        
+        if (!ohlc.value() && !ohlc.volume())
+            continue;
+
+        ohlc.set_averageprice(ohlc.value() / ohlc.volume());
+
+        this->OHLCs.push_back(ohlc);
+
+        ohlc = OHLC(); 
+    }
+
     return this->OHLCs;
 }
 
@@ -15,7 +54,7 @@ std::vector<OHLCService::OHLC> OHLCService::OHLCGenerator::GetOHLCs()
     return this->OHLCs;
 }
 
-std::vector<OHLCService::Transaction> OHLCService::OHLCGenerator::GetTransactions(const std::string_view period)
+std::vector<OHLCService::Transaction> OHLCService::OHLCGenerator::GetTransactions(const std::string period)
 {
     return this->Transactions.at(period);
 } 
@@ -63,11 +102,11 @@ void OHLCService::OHLCGenerator::LoadTransactions(const std::filesystem::path pa
                 }
 
                 transactions.emplace_back(quantity, price);
-
-                auto t = *(transactions.end() - 1);
-
-                std::cout << period << ": Transaction(Quantity=" << t.Quantity << ", Price=" << t.Price << ");\n";
             }
+            
+            this->Transactions[period] = transactions;
+
+            transactions.clear();
 
             stream.close();
         } 
