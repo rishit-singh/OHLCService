@@ -43,19 +43,19 @@ void OHLCService::OHLCGenerator::LoadTransactions(const std::filesystem::path pa
 
                 size_t quantity = 0, price = 0;
 
-                transaction = json::parse(line);
-
                 try
                 {
+                    transaction = json::parse(line);
+                   
                     if (transaction.contains("quantity"))
-                        quantity = transaction["quantity"].template get<size_t>();
+                        quantity = std::atoi(transaction["quantity"].template get<std::string>().c_str());
                     else if (transaction.contains("executed_quantity"))
-                        quantity = transaction["executed_quantity"].template get<size_t>();
+                        quantity = std::atoi(transaction["executed_quantity"].template get<std::string>().c_str());
 
                     if (transaction.contains("price"))
-                        price = transaction["price"].template get<size_t>();
+                        price = std::atoi(transaction["price"].template get<std::string>().c_str());
                     else if (transaction.contains("executed_price"))
-                        price = transaction["executed_price"].template get<size_t>();
+                        price = std::atoi(transaction["executed_price"].template get<std::string>().c_str());
                 }
                 catch (std::exception& e)
                 {
@@ -66,7 +66,7 @@ void OHLCService::OHLCGenerator::LoadTransactions(const std::filesystem::path pa
 
                 auto t = *(transactions.end() - 1);
 
-                std::cout << "Transaction(Quantity=" << t.Quantity << ", Price=" << t.Price << ");\n";
+                std::cout << period << ": Transaction(Quantity=" << t.Quantity << ", Price=" << t.Price << ");\n";
             }
 
             stream.close();
