@@ -39,18 +39,25 @@ find_package(gRPC CONFIG REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(protobuf CONFIG REQUIRED)
 
-add_library(proto-objects OBJECT "${CMAKE_CURRENT_LIST_DIR}/protobufs/ohlc.proto")
-target_link_libraries(proto-objects PUBLIC protobuf::libprotobuf)
-
 set(PROTO_BINARY_DIR "${CMAKE_CURRENT_LIST_DIR}/protobufs")
 
-target_include_directories(proto-objects PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
+add_library(proto-objects OBJECT "${CMAKE_CURRENT_LIST_DIR}/protobufs/ohlc.proto")
+target_link_libraries(proto-objects PUBLIC protobuf::libprotobuf gRPC::grpc++)
+
+target_include_directories(proto-objects PUBLIC ${PROTO_BINARY_DIR})#"$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
 
 protobuf_generate(
     TARGET proto-objects
     IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/protobufs"
     PROTOC_OUT_DIR "${PROTO_BINARY_DIR}")
 
+protobuf_generate(
+    TARGET proto-objects
+    LANGUAGE grpc
+    GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc
+    PLUGIN "protoc-gen-grpc=\$<TARGET_FILE:gRPC::grpc_cpp_plugin>"
+    IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/protobufs"
+    PROTOC_OUT_DIR "${CMAKE_CURRENT_LIST_DIR}")
 
 file(GLOB OHLCService_SOURCES src/*.cpp)
 file(GLOB Kafka_SOURCES src/kafka/*.cpp)
@@ -74,4 +81,4 @@ target_link_libraries(OHLCProducer libOHLCService proto-objects ${Protobuf_LIBRA
 
 add_executable(OHLCConsumer src/ohlc_consumer.cpp)
 target_include_directories(OHLCConsumer PRIVATE include/)
-target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka  kafka nlohmann_json::nlohmann_json)  
+target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
