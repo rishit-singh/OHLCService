@@ -19,7 +19,24 @@ int main(int argc, char** argv)
     std::vector<std::string> messages;
     
     for (auto ohlc : ohlcs)
-        messages.push_back(ohlc.SerializeAsString());
+    {
+        std::string s;
+
+        ohlc.SerializeToString(&s); 
+
+        OHLC ohlcc;
+        ohlcc.ParseFromString(s);
+
+        std::cout << "Producing: OHLC(Stock=" << ohlcc.stock()
+            << ", Period=" << ohlcc.period()
+            << ", Value=" << ohlcc.value()
+            << ", Volume=" << ohlcc.volume()
+            << ", AvgPrice=" << ohlcc.averageprice()
+            << ");\n"
+            << s << '\n';
+
+        messages.push_back(s);
+    }
 
     producer.Stream(messages);
     

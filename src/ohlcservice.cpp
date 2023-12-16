@@ -44,22 +44,19 @@ std::vector<OHLCService::OHLC> OHLCService::OHLCGenerator::GenerateOHLCs()
 
         for (auto const& [stockKey, transactions] : transactionMap) // for each stock in the period
         {
-            for (auto t : transactions) // for each transaction in stock
-            {
-                ohlc.set_period(key);
-                ohlc.set_stock(stockKey);
-                ohlc.set_value(this->GetValue(transactions));
-                ohlc.set_volume(this->GetVolume(transactions));
-                
-                if (!ohlc.value() && !ohlc.volume())
-                    continue;
+            ohlc.set_period(key);
+            ohlc.set_stock(stockKey);
+            ohlc.set_value(this->GetValue(transactions));
+            ohlc.set_volume(this->GetVolume(transactions));
+            
+            if (!ohlc.value() && !ohlc.volume())
+                continue;
 
-                ohlc.set_averageprice(ohlc.value() / ohlc.volume());
-                
-                this->OHLCs.push_back(ohlc);
-                
-                ohlc = OHLC();
-            }
+            ohlc.set_averageprice(ohlc.value() / ohlc.volume());
+            
+            this->OHLCs.push_back(ohlc);
+            
+            ohlc = OHLC();
         }
 
         transactionMap.clear();

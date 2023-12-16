@@ -15,19 +15,33 @@ int main(int argc, char** argv)
     KafkaConfig config = KafkaConfig::FromFile(argv[1]);
 
     KafkaConsumer consumer(config);     
+    
+    OHLCDatabase database(argv[2]);
 
-    Redis redis(argv[2]);
-
-    Response response;
-
-    consumer.SetOnReceiveCallback([&response, &redis](const Message& message){
-        OHLC* ohlc = response.add_ohlcs();
-
+    consumer.SetOnReceiveCallback([&database](const Message& message) {
+        OHLC ohlc;
+        
         std::stringstream ss; 
 
-        ss << message.get_payload();
+        std::string str;
 
-        ohlc->ParseFromString(ss.str());
+        auto& buffer = message.get_payload(); 
+
+        str = std::string(buffer.begin(), buffer.end());
+
+        std::cout << str << '\n';
+
+        if (!ohlc.ParseFromString(str))
+            std::cout << "Failed to parse the string." << '\n';
+       
+        std::cout << "Inserting: OHLC(Stock=" << ohlc.stock()
+            << ", Period=" << ohlc.period()
+            << ", Value=" << ohlc.value()
+            << ", Volume=" << ohlc.volume()
+            << ", AvgPrice=" << ohlc.averageprice()
+            << ");\n"; 
+
+        database.InsertOHLC(ohlc.stock(), ohlc);
     });
 
     consumer.Run();

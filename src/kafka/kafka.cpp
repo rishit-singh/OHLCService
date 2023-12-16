@@ -46,10 +46,12 @@ OHLCService::Kafka::KafkaProducer::KafkaProducer(KafkaConfig config) : Config(co
 
 void OHLCService::Kafka::KafkaProducer::Stream(std::vector<std::string> messages)
 {
+    this->mProducer.poll();
     for (auto message : messages)
     {  
         this->Builder.payload(message);
         this->mProducer.produce(this->Builder);
+        this->mProducer.poll();
     }
 
     this->mProducer.flush();
@@ -66,28 +68,38 @@ OHLCService::Kafka::KafkaConsumer::KafkaConsumer(KafkaConfig config)
     // signal(SIGINT, [this](int) { this->IsRunning = false; });
 
     	// Print the assigned partitions on assignment
+        std::cout << "Consumer created\n";
+
 	this->mConsumer.set_assignment_callback(
 		[](const cppkafka::TopicPartitionList& partitions) {
 			std::stringstream ss("Got assigned: ");
 			ss << partitions;
+
+            std::cout << "Got assigned: " << ss.str() << '\n';
 		});
 
     this->mConsumer.set_revocation_callback([](const cppkafka::TopicPartitionList& partitions) {
 			std::stringstream ss("Got revoked: ");
 			ss << partitions;
+            
+            std::cout << "Got revoked" << ss.str() << '\n';
 		});
 }
 
 
 void OHLCService::Kafka::KafkaConsumer::Run()
 {
+    std::cout << "Before subscribing\n";
+
     this->mConsumer.subscribe({this->Config.Topic});
+
+    std::cout << "Topic found:" << this->mConsumer.get_topic(this->Config.Topic).get_name() << "\n";
 
     this->IsRunning = true;
 
     while (this->IsRunning)
     {
-        Message message = this->mConsumer.poll(std::chrono::milliseconds{this->Config.PollDelay});
+        Message message = this->mConsumer.poll();
 
         if (message)
         {
@@ -104,7 +116,7 @@ void OHLCService::Kafka::KafkaConsumer::Run()
             else
             {
                 this->OnReceiveCallback(message);
-                this->mConsumer.commit(message); 
+                // this->mConsumer.commit(message); 
             }
         }
     }
