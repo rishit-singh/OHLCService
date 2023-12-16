@@ -84,26 +84,27 @@ target_include_directories(libOHLCService PUBLIC include/ protobufs/ ${PROTO_HDR
 target_link_libraries (libOHLCService PUBLIC proto-objects  rdkafka cppkafka nlohmann_json::nlohmann_json absl::base absl::strings ${Protobuf_LIBRARIES})
 
 add_library(RPC ${RPC_SOURCES})
-target_include_directories(RPC PUBLIC include/rpc protobufs/ ${CMAKE_CURRENT_LIST_DIR} ${REDIS_PLUS_PLUS_HEADER})
-target_link_libraries (RPC PUBLIC proto-objects rdkafka cppkafka ${REDIS_PLUS_PLUS_LIB} nlohmann_json::nlohmann_json absl::base absl::strings gRPC::grpc++ ${Protobuf_LIBRARIES})
+target_include_directories(RPC PUBLIC include/rpc protobufs/ ${CMAKE_CURRENT_LIST_DIR} ${HIREDIS_HEADER} ${REDIS_PLUS_PLUS_HEADER})
+target_link_libraries (RPC PUBLIC proto-objects rdkafka cppkafka ${HIREDIS_LIB} ${REDIS_PLUS_PLUS_LIB} nlohmann_json::nlohmann_json absl::base absl::strings gRPC::grpc++ ${Protobuf_LIBRARIES})
 
 add_executable(OHLCService src/main.cpp)
-target_include_directories(OHLCService PRIVATE include/)
-target_link_libraries(OHLCService libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka nlohmann_json::nlohmann_json)
+target_include_directories(OHLCService PRIVATE include/ ${HIREDIS_HEADER} ${REDIS_PLUS_PLUS_HEADER})
+target_link_libraries(OHLCService libOHLCService proto-objects ${Protobuf_LIBRARIES} ${HIREDIS_LIB}  ${REDIS_PLUS_PLUS_LIB}  rdkafka cppkafka nlohmann_json::nlohmann_json)
 
 add_executable(OHLCProducer src/ohlc_producer.cpp)
-target_include_directories(OHLCProducer PRIVATE include/)
-target_link_libraries(OHLCProducer libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka kafka nlohmann_json::nlohmann_json)
+target_include_directories(OHLCProducer PRIVATE include/ ${HIREDIS_HEADER} ${REDIS_PLUS_PLUS_HEADER})
+target_link_libraries(OHLCProducer libOHLCService proto-objects ${Protobuf_LIBRARIES} ${HIREDIS_LIB} ${REDIS_PLUS_PLUS_LIB} rdkafka cppkafka kafka nlohmann_json::nlohmann_json)
 
 add_executable(OHLCConsumer src/ohlc_consumer.cpp)
-target_include_directories(OHLCConsumer PRIVATE include/)
-target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRARIES} rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+target_include_directories(OHLCConsumer PRIVATE include/ ${HIREDIS_HEADER} ${REDIS_PLUS_PLUS_HEADER})
+target_link_libraries(OHLCConsumer libOHLCService proto-objects ${Protobuf_LIBRARIES} ${HIREDIS_LIB} ${REDIS_PLUS_PLUS_LIB} rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
 
 add_executable(OHLCServer src/server.cpp)
 target_include_directories(OHLCServer PRIVATE include/ protobufs/ ${CMAKE_CURRENT_LIST_DIR} ${REDIS_PLUS_PLUS_HEADER})
-target_link_libraries(OHLCServer libOHLCService proto-objects ${Protobuf_LIBRARIES} ${REDIS_PLUS_PLUS_LIB} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+target_link_libraries(OHLCServer libOHLCService proto-objects ${Protobuf_LIBRARIES} ${HIREDIS_LIB} ${REDIS_PLUS_PLUS_LIB} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
 
 add_executable(OHLCClient src/client.cpp)
 target_include_directories(OHLCClient PRIVATE include/ protobufs/ ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(OHLCClient libOHLCService proto-objects ${Protobuf_LIBRARIES} ${REDIS_PLUS_PLUS_LIB} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+target_link_libraries(OHLCClient libOHLCService proto-objects ${Protobuf_LIBRARIES} ${HIREDIS_LIB} ${REDIS_PLUS_PLUS_LIB} RPC gRPC::grpc++ rdkafka cppkafka  kafka nlohmann_json::nlohmann_json) 
+
 

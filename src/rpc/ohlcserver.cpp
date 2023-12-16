@@ -8,21 +8,24 @@ grpc::Status OHLCService::gRPC::OHLCServerImpl::GetOHLCsByStock(grpc::ServerCont
                                                                 const OHLCService::Request* request, 
                                                                 OHLCService::Response* response) 
 {
-    OHLCService::OHLC* ohlc = response->add_ohlcs();
+    std::vector<std::string> fetched;
+    
+    this->mRedis.lrange(request->stock(), 0, -1, std::back_inserter(fetched));
 
-    StringView out;
+    for (auto ohlcStr : fetched)
+    {
+        OHLC o;
 
-    this->mRedis.hget(request->stock(), out);
+        o.ParseFromString(ohlcStr);
 
-    OHLC parsed;
+        OHLCService::OHLC* ohlc = response->add_ohlcs();
 
-    parsed.ParseFromString(out);
-
-    ohlc->set_stock(parsed.stock());
-    ohlc->set_period(parsed.period());
-    ohlc->set_value(parsed.value());
-    ohlc->set_volume(parsed.volume());
-    ohlc->set_averageprice(parsed.averageprice());
+        ohlc->set_stock(o.stock());
+        ohlc->set_period(o.period());
+        ohlc->set_value(o.value());
+        ohlc->set_volume(o.volume());
+        ohlc->set_averageprice(o.averageprice());
+    }
 
     return grpc::Status::OK;
 }

@@ -17,13 +17,20 @@ void InitRedis(std::string address)
 
     OHLC ohlc; 
 
-    ohlc.set_stock("TSLA");
-    ohlc.set_period("2023....");
-    ohlc.set_value(1000);
-    ohlc.set_volume(100);
-    ohlc.set_averageprice(10);
+    std::vector<std::string> stocks = {
+        "TSLA", "AAPL", "GOOGL", "META"
+    };
 
-    redis.hset("hash", std::make_pair(ohlc.stock(), ohlc.SerializeAsString()));
+    for (auto stock : stocks)
+    {
+        ohlc.set_stock(stock);
+        ohlc.set_period("2023....");
+        ohlc.set_value(1000);
+        ohlc.set_volume(100);
+        ohlc.set_averageprice(10);
+        
+        redis.rpush(stock,  ohlc.SerializeAsString());
+    }
 }
 
 int main(int argc, char** argv)
